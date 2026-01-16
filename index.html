@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Anual SICOOB CREDIJUSTRA</title>
+    <style>
+        /* --- Variáveis e Reset --- */
+        :root {
+            --sicoob-dark: #003641; /* Verde Escuro Institucional */
+            --sicoob-light: #7DB61C; /* Verde Vibrante/Ação */
+            --sicoob-soft: #E8F3E0; /* Fundo Suave */
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Layout Principal --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* --- Cabeçalho --- */
+        header {
+            background: linear-gradient(135deg, var(--sicoob-dark) 0%, #004d5a 100%);
+            color: var(--white);
+            padding: 40px;
+            border-bottom: 5px solid var(--sicoob-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header .report-title {
+            text-align: right;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* --- Corpo do Relatório --- */
+        .content {
+            padding: 40px;
+        }
+
+        .section-title {
+            color: var(--sicoob-dark);
+            font-size: 22px;
+            border-left: 5px solid var(--sicoob-light);
+            padding-left: 15px;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        /* --- Cards de KPI (Resultados Rápidos) --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-bottom: 3px solid var(--sicoob-light);
+        }
+
+        .kpi-value {
+            display: block;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--sicoob-dark);
+            margin: 10px 0;
+        }
+
+        .kpi-label {
+            font-size: 14px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Gráfico CSS (Barras) --- */
+        .chart-container {
+            background: var(--sicoob-soft);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .bar-group {
+            margin-bottom: 15px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .bar-bg {
+            background: #cbd5e1;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--sicoob-light);
+            border-radius: 10px;
+            width: 0;
+            animation: grow 1.5s ease-out forwards;
+        }
+
+        @keyframes grow {
+            from { width: 0; }
+        }
+
+        /* --- Seções Específicas --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .feature-box h3 {
+            color: var(--sicoob-dark);
+            margin-bottom: 10px;
+        }
+
+        .list-check ul {
+            list-style: none;
+        }
+
+        .list-check li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .list-check li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--sicoob-light);
+            font-weight: bold;
+        }
+
+        /* --- Infraestrutura e Podcast --- */
+        .highlight-box {
+            background: linear-gradient(to right, var(--sicoob-dark), #005f73);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .highlight-box h3 {
+            color: var(--sicoob-light);
+            margin-bottom: 15px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #eee;
+            color: var(--text-light);
+            font-size: 13px;
+            margin-top: 40px;
+        }
+
+        /* --- Responsividade e Impressão --- */
+        @media (max-width: 768px) {
+            .feature-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; text-align: center; }
+            header .report-title { text-align: center; margin-top: 15px; }
+        }
+
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; max-width: 100%; }
+            .kpi-card { break-inside: avoid; border: 1px solid #ccc; }
+            header { background: var(--sicoob-dark) !important; -webkit-print-color-adjust: exact; }
+            .bar-fill { -webkit-print-color-adjust: exact; background-color: #7DB61C !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-text">SICOOB <span style="color:var(--sicoob-light)">CREDIJUSTRA</span></div>
+        <div class="report-title">
+            <h1>Relatório Estratégico Digital</h1>
+            <p>Performance Marketing & Infraestrutura • Ano 2025</p>
+        </div>
+    </header>
+
+    <div class="content">
+        
+        <p style="font-size: 1.1em; color: var(--text-light); margin-bottom: 30px;">
+            Este documento consolida as iniciativas de produção de conteúdo, tráfego pago e estruturação digital realizadas no último ano. O foco central foi a criação de ativos proprietários e a geração de oportunidades comerciais qualificadas.
+        </p>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <span class="kpi-label">Leads Gerados</span>
+                <span class="kpi-value">800</span>
+                <span style="font-size: 12px; color: green;">Cadastros Qualificados</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">Alcance Total</span>
+                <span class="kpi-value">800k+</span>
+                <span style="font-size: 12px; color: #666;">Impressões de Marca</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">Custo por Lead (CPL)</span>
+                <span class="kpi-value">R$ 7,92</span>
+                <span style="font-size: 12px; color: green;">Alta Eficiência</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">Investimento Mídia</span>
+                <span class="kpi-value">R$ 6.3k</span>
+                <span style="font-size: 12px; color: #666;">Meta Ads</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">1. Performance de Tráfego Pago</h2>
+        <p style="margin-bottom: 20px;">Realizamos ações segmentadas para públicos estratégicos (Servidores, Judiciário e Síndicos). Abaixo, as campanhas com maior volume de captação:</p>
+
+        <div class="chart-container">
+            <div class="bar-group">
+                <div class="bar-label"><span>Funcionários Públicos</span> <span>346 Leads</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="bar-group">
+                <div class="bar-label"><span>Kit Síndico (Topo de Funil)</span> <span>218 Leads</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 63%;"></div></div>
+            </div>
+            <div class="bar-group">
+                <div class="bar-label"><span>Conexão Síndico (Eventos)</span> <span>140+ Inscrições</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 40%;"></div></div>
+            </div>
+            <div class="bar-group">
+                <div class="bar-label"><span>Servidores Judiciário</span> <span>75 Leads</span></div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 21%;"></div></div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3>🏛 Estratégia Síndicos & Eventos</h3>
+                <p>Foi o grande destaque do ano, com foco no <strong>Conexão Síndico</strong> (Brasília e Belém).</p>
+                <br>
+                <ul class="list-check">
+                    <li>Campanhas de Alcance para Branding (+600k visualizações).</li>
+                    <li>Captação geo-localizada para encher os eventos.</li>
+                    <li>Investimento focado gerou quase 50% de todos os leads do ano.</li>
+                </ul>
+            </div>
+            <div class="feature-box">
+                <h3>💻 Infraestrutura Digital</h3>
+                <p>Para profissionalizar a captação, saímos da dependência de terceiros e criamos ativos próprios.</p>
+                <br>
+                <ul class="list-check">
+                    <li>Criação do domínio <strong>credijustra.com</strong>.</li>
+                    <li>Desenvolvimento de <strong>Landing Pages</strong> personalizadas para cada produto.</li>
+                    <li>Tagueamento avançado (Pixel) para rastrear conversões.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">2. Inovação: Podcast "Papo de Cooperado"</h2>
+        <div class="highlight-box">
+            <h3>🎙 Potencial Estratégico do Canal</h3>
+            <p style="margin-bottom: 20px;">Iniciamos um projeto de longo prazo para fortalecer a autoridade do SICOOB CREDIJUSTRA. Os principais benefícios de manter este canal ativo são:</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">
+                    <strong>1. Educação Financeira</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Explicação simplificada de produtos complexos, gerando confiança.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">
+                    <strong>2. Humanização</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">O cooperado conhece os rostos por trás da cooperativa.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">
+                    <strong>3. Networking</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Convidados externos (Ex: Síndicos influentes) tornam-se potenciais parceiros.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">
+                    <strong>4. Conteúdo Multiplataforma</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Um episódio gera dezenas de cortes para Instagram e TikTok.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Relatório gerado em 2026 • Departamento de Marketing Digital<br>SICOOB CREDIJUSTRA</p>
+    </footer>
+</div>
+
+</body>
+</html>
